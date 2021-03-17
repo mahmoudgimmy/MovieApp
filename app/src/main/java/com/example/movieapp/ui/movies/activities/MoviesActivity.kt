@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,8 @@ import com.example.movieapp.utils.viewModelFactory
 class MoviesActivity : AppCompatActivity(), MovieListClicks {
 
 
-    private var twoPane: Boolean = false // a boolean to indicate user opens application from tablet or not
+    private var twoPane: Boolean =
+        false // a boolean to indicate user opens application from tablet or not
     lateinit var binding: ActivityMoviesBinding
     lateinit var movieAdapter: MoviesAdapter
     private val viewModel: MoviesViewModel by viewModels {
@@ -107,8 +109,18 @@ class MoviesActivity : AppCompatActivity(), MovieListClicks {
     }
 
     private fun render(viewState: MoviesListViewState) {
-        if (viewState is MoviesListViewState.SUCCESS)
-            movieAdapter.submitList(viewState.payload)
+
+        when (viewState) {
+            is MoviesListViewState.LOADING ->
+                binding.pbLoading.isVisible = true
+            is MoviesListViewState.SUCCESS -> {
+                binding.pbLoading.isVisible = false
+                movieAdapter.submitList(viewState.payload)
+            }
+            is MoviesListViewState.FAILURE -> {
+                binding.pbLoading.isVisible = false
+            }
+        }
     }
 
     override fun onMovieClicked(movie: Movie) {
