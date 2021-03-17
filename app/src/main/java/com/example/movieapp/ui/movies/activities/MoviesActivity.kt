@@ -111,10 +111,30 @@ class MoviesActivity : AppCompatActivity(), MovieListClicks {
     private fun render(viewState: MoviesListViewState) {
 
         when (viewState) {
-            is MoviesListViewState.LOADING ->
-                binding.pbLoading.isVisible = true
+            is MoviesListViewState.LOADING -> {
+                binding.apply {
+                    pbLoading.isVisible = true
+                    tvEmptySearchResult.apply {
+                        isVisible = false
+                        text = ""
+                    }
+                }
+            }
             is MoviesListViewState.SUCCESS -> {
                 binding.pbLoading.isVisible = false
+
+                if (viewState.payload.isEmpty()) {
+                    binding.tvEmptySearchResult.apply {
+                        isVisible = true
+                        text =
+                            getString(
+                                R.string.message_empty_search,
+                                binding.floatingSearchView.query
+                            )
+                    }
+                } else
+                    binding.tvEmptySearchResult.isVisible = false
+
                 movieAdapter.submitList(viewState.payload)
             }
             is MoviesListViewState.FAILURE -> {
