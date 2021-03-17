@@ -71,6 +71,7 @@ class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
     }
 
     fun searchForMovie(query: String) {
+        _moviesList.postValue(MoviesListViewState.LOADING)
 
         val itemsList = ArrayList<Item>()
         allMovies.keys.forEach { year ->
