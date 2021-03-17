@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Movie App</string>
+    <string name="title_item_detail">Movie Detail</string>
+    <string name="search_hint">Search for a movie..</string>
+    <string name="cast">Cast</string>
+    <string name="genres">Genres</string>
+    <string name="score">-</string>
+</resources>
