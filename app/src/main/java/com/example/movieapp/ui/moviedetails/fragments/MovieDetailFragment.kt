@@ -73,7 +73,7 @@ class MovieDetailFragment : Fragment() {
         binding.apply {
             tvMovieName.text = movie.title
             tvYear.text = movie.year.toString()
-            if(movie.cast.isEmpty())
+            if (movie.cast.isEmpty())
                 tvCast.isVisible = false
             if (movie.genres.isEmpty())
                 tvGenres.isVisible = false
@@ -116,10 +116,12 @@ class MovieDetailFragment : Fragment() {
 
     private fun render(viewStat: MovieDetailsViewState) {
         when (viewStat) {
-            is MovieDetailsViewState.LOADING -> {
+            is MovieDetailsViewState.LOADING ->
+                binding.pbLoading.isVisible = true
 
-            }
             is MovieDetailsViewState.SUCCESS -> {
+                binding.pbLoading.isVisible = false
+
                 val imageList = ArrayList<SlideModel>()
                 // make array of SlideModel according to images urls
                 viewStat.payload.forEach {
@@ -128,8 +130,12 @@ class MovieDetailFragment : Fragment() {
                 binding.isMovieImages.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
             }
             is MovieDetailsViewState.FAILURE -> {
+                binding.pbLoading.isVisible = false
                 binding.isMovieImages.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.empty_image_place_holder)
+            }
+            is MovieDetailsViewState.IDLE -> {
+                // no screen ui changes
             }
         }
     }
