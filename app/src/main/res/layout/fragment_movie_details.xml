@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/is_movie_images"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            android:background="@color/grey_d"
+            android:padding="@dimen/_16sdp"
+            app:iss_auto_cycle="true"
+            app:iss_error_image="@drawable/empty_image_place_holder"
+            app:iss_period="1500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_movie_name"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="@dimen/_16sdp"
+            android:textSize="@dimen/_28ssp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_year"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/is_movie_images"
+            tools:text="asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd" />
+
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:textSize="@dimen/_24ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_movie_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_movie_name"
+            tools:text="2018" />
+
+        <TextView
+            android:id="@+id/tv_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:text="@string/cast"
+            android:textSize="@dimen/_22ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cast" />
+
+
+        <TextView
+            android:id="@+id/tv_genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="@string/genres"
+            android:textSize="@dimen/_22ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_cast" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_genres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
