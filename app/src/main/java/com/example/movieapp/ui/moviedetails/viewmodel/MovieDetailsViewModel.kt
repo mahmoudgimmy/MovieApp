@@ -10,10 +10,12 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel() {
-    private val _moviePhotos = MutableStateFlow<MovieDetailsViewState>(MovieDetailsViewState.LOADING)
+    private val _moviePhotos = MutableStateFlow<MovieDetailsViewState>(MovieDetailsViewState.IDLE)
     val moviePhotos: StateFlow<MovieDetailsViewState> = _moviePhotos
 
     fun getMovieImages(title: String) = viewModelScope.launch {
+        _moviePhotos.value = MovieDetailsViewState.LOADING
+
         repository.searchForMovieImages(title).collectLatest { status ->
 
             when (status) {
