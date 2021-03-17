@@ -5,5 +5,5 @@
     <string name="cast">Cast</string>
     <string name="genres">Genres</string>
     <string name="score">-</string>
-    <string name="message_empty_search">"No Result found For %s"</string>
+    <string name="message_empty_search">"No Results Found For %s"</string>
 </resources>
