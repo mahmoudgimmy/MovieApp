@@ -122,6 +122,14 @@ class MovieDetailFragment : Fragment() {
             is MovieDetailsViewState.SUCCESS -> {
                 binding.pbLoading.isVisible = false
 
+                if (viewStat.payload.isEmpty()) {
+                    binding.isMovieImages.background =
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.empty_image_place_holder
+                        )
+                    return
+                }
                 val imageList = ArrayList<SlideModel>()
                 // make array of SlideModel according to images urls
                 viewStat.payload.forEach {
