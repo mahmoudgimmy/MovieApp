@@ -24,5 +24,8 @@ class MovieDetailsViewModelTest {
     @Before
     fun setUp() {
         // do something if required
+        // 1- prepare
+        // 2- action
+        // 3- assertion
     }
 }
